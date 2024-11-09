@@ -1,0 +1,10 @@
+[
+  {
+    "_id": "deviceId",
+    "sequence_value": 0
+  },
+  {
+    "_id": "soundReadingId",
+    "sequence_value": 0
+  }
+]

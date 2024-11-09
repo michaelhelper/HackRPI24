@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "reading1",
+    "device_id": "device1",
+    "timestamp": "2024-11-09T10:05:00Z",
+    "location": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "sound_level": 68.5
+  },
+  {
+    "_id": "reading2",
+    "device_id": "device1",
+    "timestamp": "2024-11-09T10:10:00Z",
+    "location": {
+      "latitude": 40.7128,
+      "longitude": -74.006
+    },
+    "sound_level": 70.2
+  },
+  {
+    "_id": "reading3",
+    "device_id": "device2",
+    "timestamp": "2024-11-09T10:05:00Z",
+    "location": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "sound_level": 65.3
+  },
+  {
+    "_id": "reading4",
+    "device_id": "device2",
+    "timestamp": "2024-11-09T10:10:00Z",
+    "location": {
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    "sound_level": 66.8
+  },
+  {
+    "_id": "reading5",
+    "device_id": "device3",
+    "timestamp": "2024-11-09T10:05:00Z",
+    "location": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "sound_level": 72.1
+  }
+]
