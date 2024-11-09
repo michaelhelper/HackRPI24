@@ -11,11 +11,12 @@ interface MyDocument {
 export async function GET() {
   const client = await clientPromise;
   const db = client.db("sound_monitoring");
-  const collection: Collection<MyDocument> = db.collection("devices");
-
+  const collection: Collection<MyDocument> = db.collection("sound_readings");
   const data = await collection.find({}).toArray();
   return NextResponse.json(data);
 }
+
+
 
 export async function POST(request: NextRequest) {
   const client = await clientPromise;
