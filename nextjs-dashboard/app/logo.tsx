@@ -5,7 +5,7 @@ const Logo: React.FC = () => {
   return (
     <div style={styles.logo}>
       {/* You can replace this text with an <img> tag if you have a logo image */}
-      <h1 style={styles.logoText}>MyLogo</h1>
+      <h1 style={styles.logoText}>Noise Scape</h1>
     </div>
   );
 };
