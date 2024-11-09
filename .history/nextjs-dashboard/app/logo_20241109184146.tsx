@@ -1,20 +1,24 @@
 // components/Logo.tsx
 import React from 'react';
 import Image from 'next/image';
-import logoImage from '../public/noiseScapeLogoTransparent.png';
+import logoImage from '../public/logo.png';
 
 const Logo: React.FC = () => {
   return (
       <Image src={logoImage} alt="Logo" style={styles.logoImage} />
+      <img src={logoImage} alt="Logo" style={styles.logoImage} />
+    </div>
   );
 };
 
 // Basic inline styles for the logo
-const styles = {  
+const styles = {
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   logoImage: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
+    height: '50px', // Adjust the height as needed
   },
 };
 

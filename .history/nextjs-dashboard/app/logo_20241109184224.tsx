@@ -10,11 +10,12 @@ const Logo: React.FC = () => {
 };
 
 // Basic inline styles for the logo
-const styles = {  
+const styles = {
+  logo: {
+
+  },
   logoImage: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
+    height: '50px', // Adjust the height as needed
   },
 };
 
