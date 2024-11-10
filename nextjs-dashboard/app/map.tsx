@@ -1,10 +1,12 @@
 // components/map_controls/MapComponent.tsx
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import FilterControls from './map_controls/filter'; // Adjust the path as necessary
+import { FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
+
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string;
 
@@ -95,6 +97,22 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
     setMapMode(event.target.value);
   };
 
+  // const geojsonData: FeatureCollection<Geometry, GeoJsonProperties> = useMemo(() => ({
+  //   type: 'FeatureCollection',
+  //   features: filteredData.map(item => ({
+  //     type: 'Feature',
+  //     properties: {
+  //       id: item._id,
+  //       sound_level: item.sound_level,
+  //       timestamp: item.timestamp,
+  //     },
+  //     geometry: {
+  //       type: 'Point',
+  //       coordinates: [item.location.longitude, item.location.latitude],
+  //     },
+  //   })),
+  // }), [filteredData]);
+
   // Initialize the map only once
   useEffect(() => {
     let mapStyle: string = '';
@@ -114,11 +132,98 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/' + mapStyle,
       center: [0, 0],
-      zoom: 2,
+      zoom: 12,
     });
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
     mapRef.current = map;
+
+
+
+    // map.on('load', () => {
+    //   console.log('Map has loaded.');
+
+    //   // Add GeoJSON source
+    //   if (!map.getSource('soundData')) {
+    //     map.addSource('soundData', {
+    //       type: 'geojson',
+    //       data: geojsonData, // Initial data
+    //       // Optional: enable clustering if desired
+    //       // cluster: true,
+    //       // clusterMaxZoom: 14,
+    //       // clusterRadius: 50,
+    //     });
+
+    //     console.log('GeoJSON source added.');
+
+    //     // Add Heatmap Layer with Enhanced Smoothness
+    //     map.addLayer(
+    //       {
+    //         id: 'heatmap-layer',
+    //         type: 'heatmap',
+    //         source: 'soundData',
+    //         maxzoom: 17,
+    //         paint: {
+    //           // Adjust the weight based on sound_level
+    //           'heatmap-weight': [
+    //             'interpolate',
+    //             ['linear'],
+    //             ['get', 'sound_level'],
+    //             0, 0,
+    //             40, 0.2,
+    //             50, 0.4,
+    //             60, 0.6,
+    //             70, 0.7,
+    //             80, 1,
+    //             90, 1,
+    //           ],
+    //           // Control the intensity of the heatmap
+    //           'heatmap-intensity': [
+    //             'interpolate',
+    //             ['linear'],
+    //             ['zoom'],
+    //             0, 1,
+    //             15, 3,
+    //           ],
+    //           // Define the color gradient for the heatmap
+    //           'heatmap-color': [
+    //             'interpolate',
+    //             ['linear'],
+    //             ['heatmap-density'],
+    //             0, 'rgba(33,102,172,0)',
+    //             0.1, 'rgb(103,169,207)',
+    //             0.3, 'rgb(209,229,240)',
+    //             0.5, 'rgb(253,219,199)',
+    //             0.7, 'rgb(239,138,98)',
+    //             1, 'rgb(178,24,43)',
+    //           ],
+    //           // Adjust the radius of influence for each data point
+    //           'heatmap-radius': [
+    //             'interpolate',
+    //             ['linear'],
+    //             ['zoom'],
+    //             0, 15, // Increased from 10 to 15
+    //             15, 40, // Increased from 30 to 40
+    //           ],
+    //           // Adjust the opacity of the heatmap
+    //           'heatmap-opacity': [
+    //             'interpolate',
+    //             ['linear'],
+    //             ['zoom'],
+    //             7, 0.9, // Slightly reduced for better blending
+    //             15, 0.6,
+    //           ],
+    //           // Optional: Additional smoothing with heatmap-aggregation
+    //         },
+    //       },
+    //       'waterway-label' // Ensure this layer exists in your style
+    //     );
+
+    //     console.log('Heatmap layer added with enhanced properties.');
+    //   }
+    // });
+
+
 
     // Cleanup on unmount
     return () => map.remove();
