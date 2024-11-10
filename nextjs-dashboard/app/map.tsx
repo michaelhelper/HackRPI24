@@ -49,7 +49,7 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
   const [filterMaxSound, setFilterMaxSound] = useState<number>(maxSoundLevel);
 
   
-const [filterTimeWindow, setFilterTimeWindow] = useState<number>(timeWindow*60000);
+const [filterTimeWindow, setFilterTimeWindow] = useState<number>(timeWindow);
 
 let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
 
