@@ -22,11 +22,6 @@ const Navbar: React.FC = () => {
             ABOUT US
           </Link>
         </li>
-        <li className={styles.navItem}>
-          <Link href="/noiseScape" className={styles.navLink}>
-            NOISESCAPE
-          </Link>
-        </li>
       </ul>
     </nav>
   );

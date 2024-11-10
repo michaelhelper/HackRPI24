@@ -117,6 +117,44 @@
     .navItem {
       margin-left: 0;
     }
+        .navbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 20px;
+        }
     
+        .logoContainer {
+          flex: 1;
+        }
+    
+        .titleContainer {
+          flex: 1;
+          text-align: left;
+        }
+    
+        .projectTitle {
+          margin: 0;
+          font-size: 1.5rem;
+          /* Adjust size as needed */
+        }
+    
+        .navLinks {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+    
+        .navItem {
+          margin-left: 20px;
+        }
+    
+        .navLink {
+          text-decoration: none;
+          color: inherit;
+        }
   }
   

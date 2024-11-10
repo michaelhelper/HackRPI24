@@ -11,6 +11,9 @@ const Navbar: React.FC = () => {
       <div className={styles.logoContainer}>
         <Logo />
       </div>
+      <div className={styles.titleContainer}>
+        <h1 className={styles.projectTitle}>NoiseScape</h1>
+      </div>
       <ul className={styles.navLinks}>
         <li className={styles.navItem}>
           <Link href="/" className={styles.navLink}>
@@ -20,11 +23,6 @@ const Navbar: React.FC = () => {
         <li className={styles.navItem}>
           <Link href="/aboutUs" className={styles.navLink}>
             ABOUT US
-          </Link>
-        </li>
-        <li className={styles.navItem}>
-          <Link href="/noiseScape" className={styles.navLink}>
-            NOISESCAPE
           </Link>
         </li>
       </ul>

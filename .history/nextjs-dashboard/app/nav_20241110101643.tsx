@@ -13,18 +13,13 @@ const Navbar: React.FC = () => {
       </div>
       <ul className={styles.navLinks}>
         <li className={styles.navItem}>
-          <Link href="/" className={styles.navLink}>
+          <Link href="/nextjs-dashboard/" className={styles.navLink}>
             HOME
           </Link>
         </li>
         <li className={styles.navItem}>
           <Link href="/aboutUs" className={styles.navLink}>
             ABOUT US
-          </Link>
-        </li>
-        <li className={styles.navItem}>
-          <Link href="/noiseScape" className={styles.navLink}>
-            NOISESCAPE
           </Link>
         </li>
       </ul>
