@@ -6,8 +6,6 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import FilterControls from './map_controls/filter'; // Adjust the path as necessary
 
-const TIME_RANGE = 15 * 60 * 1000; // 15 minutes in milliseconds
-
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN as string;
 
 interface MyDocument {
@@ -36,6 +34,8 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
   const maxTimestamp = Math.max(...timestamps);
   const duration = maxTimestamp - minTimestamp;
 
+  const timeWindow:number = 15;
+
   // Extract sound levels
   const soundLevels = data.map(item => item.sound_level);
   const minSoundLevel = Math.min(...soundLevels);
@@ -47,6 +47,11 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
   // State to manage sound level filters
   const [filterMinSound, setFilterMinSound] = useState<number>(minSoundLevel);
   const [filterMaxSound, setFilterMaxSound] = useState<number>(maxSoundLevel);
+
+  
+const [filterTimeWindow, setFilterTimeWindow] = useState<number>(timeWindow*60000);
+
+let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
 
 
   // Function to handle sound level filter changes
@@ -70,7 +75,7 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
   const filteredData = data.filter(item => {
     const itemTimestamp = new Date(item.timestamp).getTime();
     return (
-        Math.abs(itemTimestamp - selectedTimestamp) <= TIME_RANGE &&
+        Math.abs(itemTimestamp - selectedTimestamp) <= (filterTimeWindow * 60000) &&
 
       item.sound_level >= filterMinSound &&
       item.sound_level <= filterMaxSound
@@ -227,6 +232,8 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
       <FilterControls
         minSoundLevel={minSoundLevel}
         maxSoundLevel={maxSoundLevel}
+        windowSize={timeWindow}
+        windowChange={setFilterTimeWindow}
         onFilterChange={handleFilterChange}
         minTimestamp={0}
         maxTimestamp={duration}
