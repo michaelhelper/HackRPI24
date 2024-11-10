@@ -132,8 +132,9 @@ const FilterControls: React.FC<FilterControlsProps> = ({
               setLocalTimeWindow(e.target.value);
             }}
             style={styles.input}
-            placeholder="Max Level"
+            placeholder="Window Size"
           />
+          Minutes
         </label>
       </div>
       <button onClick={handleApplyWindow} style={styles.button}>

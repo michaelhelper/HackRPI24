@@ -75,7 +75,7 @@ let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
   const filteredData = data.filter(item => {
     const itemTimestamp = new Date(item.timestamp).getTime();
     return (
-        Math.abs(itemTimestamp - selectedTimestamp) <= (filterTimeWindow * 60000) &&
+        Math.abs(itemTimestamp - selectedTimestamp) <= (filterTimeWindow * 30000) &&
 
       item.sound_level >= filterMinSound &&
       item.sound_level <= filterMaxSound
