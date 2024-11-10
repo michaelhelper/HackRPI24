@@ -2,6 +2,10 @@
 import React, { useState } from 'react';
 import CustomTimeSlider from './timeslider'; // Ensure the path is correct
 
+const permaMinSound:number = 0;
+const permaMaxSound:number = 1000;
+
+
 interface FilterControlsProps {
   minSoundLevel: number;
   maxSoundLevel: number;
@@ -39,8 +43,8 @@ const FilterControls: React.FC<FilterControlsProps> = ({
 
   const clearfilter = () => {
     // Reset local sound level inputs to default values
-    setLocalMinLevel(minSoundLevel);
-    setLocalMaxLevel(maxSoundLevel);
+    setLocalMinLevel(permaMinSound);
+    setLocalMaxLevel(permaMaxSound);
     
     // Notify parent component to reset filters
     onFilterChange(minSoundLevel, maxSoundLevel);
