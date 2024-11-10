@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
         <Logo />
       </div>
       <div className={styles.titleContainer}>
-        <span className={styles.title}>NOISESCAPE</span>
+        <span className={styles.title}>NOISEScape</span>
       </div>
       <ul className={styles.navLinks}>
         <li className={styles.navItem}>
