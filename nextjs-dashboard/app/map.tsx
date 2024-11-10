@@ -437,7 +437,7 @@ if (navigator.geolocation) {
 const styles = {
   radios: {
     position: 'absolute' as 'absolute',
-    top: '10px',
+    bottom: '15%',
     right: '10px',
     backgroundColor: 'rgba(255, 255, 255, 0.95)', // Slight transparency
     padding: '15px',
