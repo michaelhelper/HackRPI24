@@ -129,31 +129,32 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
     if (!mapRef.current) return;
     const map = mapRef.current;
 
-        // Request user's location and set map center if granted
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLng = position.coords.longitude;
-          const userLat = position.coords.latitude;
+        /// Request user's location and set map center if granted
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      if (mapRef.current) { // Ensure map is initialized
+        const userLng = position.coords.longitude;
+        const userLat = position.coords.latitude;
 
-          // Center map on user's location
-          map.setCenter([userLng, userLat]);
-          map.setZoom(12);
+        // Center map on user's location
+        mapRef.current.setCenter([userLng, userLat]);
+        mapRef.current.setZoom(12);
 
-          // Add a marker at the user's location
-          new mapboxgl.Marker({ color: 'blue' })
-            .setLngLat([userLng, userLat])
-            .setPopup(new mapboxgl.Popup().setText("You are here"))
-            .addTo(map);
-        },
-        (error) => {
-          console.error("Location access denied or unavailable:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    } 
-
+        // Add a marker at the user's location
+        new mapboxgl.Marker({ color: 'blue' })
+          .setLngLat([userLng, userLat])
+          .setPopup(new mapboxgl.Popup().setText("You are here"))
+          .addTo(mapRef.current);
+      }
+    },
+    (error) => {
+      console.error("Location access denied or unavailable:", error);
+    }
+  );
+} else {
+  console.error("Geolocation is not supported by this browser.");
+}
     // Remove existing markers
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];

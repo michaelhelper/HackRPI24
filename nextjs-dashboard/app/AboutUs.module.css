@@ -1,0 +1,126 @@
+/* General container for the page */
+.container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main title of the page */
+  .title {
+    font-size: 2.8rem;
+    text-align: center;
+    color: #0f3057;  /* Deep blue for a professional look */
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+  }
+  
+  /* Each main section container */
+  .section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .section:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Subtitle of each section */
+  .subtitle {
+    font-size: 2rem;
+    color: #0070f3; /* Use of a vibrant color for emphasis */
+    margin-bottom: 1.5rem;
+    text-align: left;
+    border-bottom: 2px solid #0070f3;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* General text styling for the paragraphs */
+  .text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+  
+  /* Cards section container styling */
+  .cardsSection {
+    width: 100%;
+    margin: 3rem auto;
+  }
+  
+  /* Specific styling for the cards container */
+  .card {
+    width: 90%;
+    max-width: 320px;
+    margin: 1rem auto;
+    padding: 2rem;
+    background-color: #f7f9fc; /* Light blueish background for better contrast */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    text-align: center;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+  
+  .cardTitle {
+    font-size: 1.6rem;
+    color: #0f3057;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .cardContent {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Button styling for navigation */
+  .shuffleButton {
+    margin-top: 2rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 1.1rem;
+    background-color: #0070f3;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 112, 243, 0.4);
+  }
+  
+  .shuffleButton:hover {
+    background-color: #005bb5;
+    box-shadow: 0 6px 15px rgba(0, 91, 181, 0.5);
+  }
+  
+  /* Callout for Important Details */
+  .highlight {
+    background-color: #0070f3;
+    color: #ffffff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  
+  /* Decorative Divider */
+  .divider {
+    margin: 3rem 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(to right, #0070f3, #ffffff);
+    border: none;
+  }
+  

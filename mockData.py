@@ -50,7 +50,7 @@ initial_sound_levels = [
     for _ in range(num_devices)
 ]
 
-for device_id in range(1, num_devices + 1):
+for device_id in range(2, num_devices + 1):
     device_data = []
     current_time = start_time
     previous_level = initial_sound_levels[device_id - 1]

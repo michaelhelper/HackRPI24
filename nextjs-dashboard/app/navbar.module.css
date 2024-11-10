@@ -1,0 +1,121 @@
+/* Navbar.module.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #0070f3; /* Deep vibrant blue for visual impact */
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo container to position the logo in the navbar */
+  .logoContainer {
+    flex-grow: 1;
+  }
+  
+  .logo {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Styling for the navigation links */
+  .navLinks {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Each item in the navigation */
+  .navItem {
+    margin-left: 2rem; /* Add spacing between items for better readability */
+  }
+  
+  /* Styling for individual navigation links */
+  .navLink {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4rem;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Link hover effect for better interactivity */
+  .navLink:hover {
+    color: black; /* Bright yellow to highlight links on hover */
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive navbar for mobile view */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .hamburger span {
+    background: #ffffff;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+  }
+  
+  /* Mobile Menu styles */
+  .mobileMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: #0070f3;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+  }
+  
+  .mobileMenu.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .navLinks.mobile {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .navItem.mobile {
+    margin: 1rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .navLinks {
+      display: none;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
+  
+    .mobileMenu {
+      display: none; /* Hidden by default, triggered by JS */
+    }
+  
+    .navItem {
+      margin-left: 0;
+    }
+  }
+  
