@@ -58,14 +58,9 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
           ValueLabel: ValueLabelComponent,
         }}
       />
-    <div style={{ textAlign: 'center', marginTop: '10px' }}>
-            {new Intl.DateTimeFormat('en-US', {
-              timeZone: 'America/New_York',
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: true, // Use 12-hour format
-            }).format(new Date(currentValue+ 6*60*60*1000))}
-          </div>
+      <div style={{ textAlign: 'center', marginTop: '10px' }}>
+        {new Date(currentValue)}
+      </div>
     </Box>
   );
 };

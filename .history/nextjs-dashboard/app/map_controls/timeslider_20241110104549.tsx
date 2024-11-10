@@ -64,7 +64,7 @@ const TimeSlider: React.FC<TimeSliderProps> = ({
               hour: '2-digit',
               minute: '2-digit',
               hour12: true, // Use 12-hour format
-            }).format(new Date(currentValue+ 6*60*60*1000))}
+            }).format(new Date(currentValue+ ))}
           </div>
     </Box>
   );

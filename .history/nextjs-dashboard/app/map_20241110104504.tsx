@@ -36,7 +36,7 @@ const timestamps = data.map(item => {
   // Convert the date to EST by adjusting for the offset
   const utcOffset = date.getTimezoneOffset(); // Offset from UTC in minutes
   const estOffset = 5 * 60; // EST is UTC-5 hours (300 minutes)
-  const estDate = new Date(date.getTime() - (utcOffset + estOffset) * 60000);
+  const estDate = new Date(date.getTime() - (utcOffset + estOffset) * 60000 + estOffset);
 
   return estDate.getTime();
 });
