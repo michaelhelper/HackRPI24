@@ -1,0 +1,49 @@
+/* Container for the DataCards section */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    background-color: #ffffff;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Styling for individual cards */
+  .card {
+    width: 300px; /* Set all cards to the same width */
+    margin: 0rem auto; /* Centers the card horizontally and adds spacing */
+    padding: 2rem;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .cardContent {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Button styling for navigation */
+  .shuffleButton {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .shuffleButton:hover {
+    background-color: #005bb5;
+  }
+  
