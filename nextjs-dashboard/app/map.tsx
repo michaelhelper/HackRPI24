@@ -105,6 +105,8 @@ const timestamps = data.map(item => {
     setMapMode(event.target.value);
   };
 
+  
+
   // const geojsonData: FeatureCollection<Geometry, GeoJsonProperties> = useMemo(() => ({
   //   type: 'FeatureCollection',
   //   features: filteredData.map(item => ({
@@ -242,32 +244,36 @@ const timestamps = data.map(item => {
     if (!mapRef.current) return;
     const map = mapRef.current;
 
-        /// Request user's location and set map center if granted
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      if (mapRef.current) { // Ensure map is initialized
-        const userLng = position.coords.longitude;
-        const userLat = position.coords.latitude;
+        /// Request user's location and put down marker
+        if (navigator.geolocation) {
+          console.log("wee have navigator geolocation")
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              console.log("we have a position")
+              if (mapRef.current) { // Ensure map is initialized
+                const userLng = position.coords.longitude;
+                const userLat = position.coords.latitude;
+        
+                // Center map on user's location
+                // mapRef.current.setCenter([userLng, userLat]);
+                // mapRef.current.setZoom(12);
+        
+                // Add a marker at the user's location
+                new mapboxgl.Marker({ color: 'blue' })
+                  .setLngLat([userLng, userLat])
+                  .setPopup(new mapboxgl.Popup().setText("You are here"))
+                  .addTo(mapRef.current);
+              }
+            },
+            (error) => {
+              console.error("Location access denied or unavailable:", error);
+            }
+          );
+        } else {
+          console.error("Geolocation is not supported by this browser.");
+        }
 
-        // Center map on user's location
-        mapRef.current.setCenter([userLng, userLat]);
-        mapRef.current.setZoom(12);
 
-        // Add a marker at the user's location
-        new mapboxgl.Marker({ color: 'blue' })
-          .setLngLat([userLng, userLat])
-          .setPopup(new mapboxgl.Popup().setText("You are here"))
-          .addTo(mapRef.current);
-      }
-    },
-    (error) => {
-      console.error("Location access denied or unavailable:", error);
-    }
-  );
-} else {
-  console.error("Geolocation is not supported by this browser.");
-}
     // Remove existing markers
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
@@ -381,6 +387,32 @@ if (navigator.geolocation) {
 
   }, [filteredData]);
 
+  const centerUser = () => {
+    if (navigator.geolocation) {
+      console.log("wee have navigator geolocation")
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log("we have a position")
+          if (mapRef.current) { // Ensure map is initialized
+            const userLng = position.coords.longitude;
+            const userLat = position.coords.latitude;
+    
+            // Center map on user's location
+            mapRef.current.setCenter([userLng, userLat]);
+            // mapRef.current.setZoom(12);
+    
+            
+          }
+        },
+        (error) => {
+          console.error("Location access denied or unavailable:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <FilterControls
@@ -438,6 +470,10 @@ if (navigator.geolocation) {
         <p>Current Map Mode: {mapMode}</p>
       </div>
 
+      <button onClick={centerUser} style={styles.button}>
+          Center on Location
+      </button>
+
     </div>
   );
 };
@@ -445,7 +481,7 @@ if (navigator.geolocation) {
 const styles = {
   radios: {
     position: 'absolute' as 'absolute',
-    bottom: '15%',
+    bottom: '40px',
     right: '10px',
     backgroundColor: 'rgba(255, 255, 255, 0.95)', // Slight transparency
     padding: '15px',
@@ -455,6 +491,18 @@ const styles = {
     zIndex: 1000, // Ensure the filter controls are always on top
     maxWidth: '300px',
     width: '90%', // Responsive width
+  },
+  button: {
+    position: 'absolute' as 'absolute',
+    bottom: '190px',
+    right: '10px',
+    flex: 1,
+    padding: '5px 10px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
   },
 };
 
