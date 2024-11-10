@@ -12,11 +12,7 @@ const Navbar: React.FC = () => {
         <Logo />
       </div>
       <ul className={styles.navLinks}>
-        <li className={styles.navItem}>
-          <Link href="" className={styles.navLink}>
-            NOISESCAPE
-          </Link>
-        </li>
+        
         <li className={styles.navItem}>
           <Link href="/" className={styles.navLink}>
             HOME

@@ -13,11 +13,6 @@ const Navbar: React.FC = () => {
       </div>
       <ul className={styles.navLinks}>
         <li className={styles.navItem}>
-          <Link href="" className={styles.navLink}>
-            NOISESCAPE
-          </Link>
-        </li>
-        <li className={styles.navItem}>
           <Link href="/" className={styles.navLink}>
             HOME
           </Link>
@@ -25,6 +20,11 @@ const Navbar: React.FC = () => {
         <li className={styles.navItem}>
           <Link href="/aboutUs" className={styles.navLink}>
             ABOUT US
+          </Link>
+        </li>
+        <li className={styles.navItem}>
+          <Link href="" className={styles.navLink}>
+            NOISESCAPE
           </Link>
         </li>
       </ul>
