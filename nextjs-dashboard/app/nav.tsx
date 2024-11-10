@@ -1,4 +1,3 @@
-// components/Navbar.tsx
 import React from 'react';
 import Logo from './logo'; // Import the Logo component
 
@@ -7,6 +6,7 @@ const Navbar: React.FC = () => {
     <nav style={styles.navbar}>
       <div style={styles.logoContainer}>
         <Logo />
+        <span style={styles.title}>NoiseScape</span>
       </div>
       <ul style={styles.navLinks}>
         <li style={styles.navItem}><a href="#home" style={styles.navLink}>Home</a></li>
@@ -27,7 +27,15 @@ const styles = {
     color: '#fff',
   },
   logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
     flexGrow: 1,
+  },
+  title: {
+    marginLeft: '0.5rem',
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#fff',
   },
   navLinks: {
     display: 'flex',
