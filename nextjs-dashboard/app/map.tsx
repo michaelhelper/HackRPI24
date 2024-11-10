@@ -234,7 +234,6 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
     if (!mapRef.current) return;
     const map = mapRef.current;
 
-<<<<<<< Updated upstream
         /// Request user's location and set map center if granted
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
@@ -246,32 +245,6 @@ if (navigator.geolocation) {
         // Center map on user's location
         mapRef.current.setCenter([userLng, userLat]);
         mapRef.current.setZoom(12);
-=======
-    // Request user's location and set map center if granted
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLng = position.coords.longitude;
-          const userLat = position.coords.latitude;
-
-          // Center map on user's location
-          map.setCenter([userLng, userLat]);
-          map.setZoom(12);
-
-          // Add a marker at the user's location
-          new mapboxgl.Marker({ color: 'blue' })
-            .setLngLat([userLng, userLat])
-            .setPopup(new mapboxgl.Popup().setText("You are here"))
-            .addTo(map);
-        },
-        (error) => {
-          console.error("Location access denied or unavailable:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
->>>>>>> Stashed changes
 
         // Add a marker at the user's location
         new mapboxgl.Marker({ color: 'blue' })
