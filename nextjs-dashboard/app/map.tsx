@@ -34,7 +34,7 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
   const maxTimestamp = Math.max(...timestamps);
   const duration = maxTimestamp - minTimestamp;
 
-  const timeWindow:number = 15;
+  const timeWindow: number = 15;
 
   // Extract sound levels
   const soundLevels = data.map(item => item.sound_level);
@@ -48,11 +48,8 @@ const MapComponent: React.FC<MapProps> = ({ data }) => {
   const [filterMinSound, setFilterMinSound] = useState<number>(minSoundLevel);
   const [filterMaxSound, setFilterMaxSound] = useState<number>(maxSoundLevel);
 
-  
-const [filterTimeWindow, setFilterTimeWindow] = useState<number>(timeWindow);
 
-let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
-
+  const [filterTimeWindow, setFilterTimeWindow] = useState<number>(timeWindow);
 
   // Function to handle sound level filter changes
   const handleFilterChange = (min: number, max: number) => {
@@ -75,7 +72,7 @@ let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
   const filteredData = data.filter(item => {
     const itemTimestamp = new Date(item.timestamp).getTime();
     return (
-        Math.abs(itemTimestamp - selectedTimestamp) <= (filterTimeWindow * 30000) &&
+      Math.abs(itemTimestamp - selectedTimestamp) <= (filterTimeWindow * 30000) &&
 
       item.sound_level >= filterMinSound &&
       item.sound_level <= filterMaxSound
@@ -91,13 +88,31 @@ let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
     // console.log('MapComponent: Filtered Data:', filteredData);
   }, [selectedTimestamp, filterMinSound, filterMaxSound, filteredData]);
 
+  const [mapMode, setMapMode] = useState<string>("day");
+
+  // Handle change of radio button
+  const handleMapModeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMapMode(event.target.value);
+  };
+
   // Initialize the map only once
   useEffect(() => {
+    let mapStyle: string = '';
+    if (mapMode == 'day') {
+      mapStyle = 'navigation-day-v1';
+    } else if (mapMode == 'satellite') {
+      mapStyle = 'satellite-streets-v12'
+    } else {
+      mapStyle = 'dark-v11'
+    }
+
+    console.log("my map style is: ", mapStyle)
+
     if (!mapContainerRef.current) return;
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/navigation-day-v1',
+      style: 'mapbox://styles/mapbox/' + mapStyle,
       center: [0, 0],
       zoom: 2,
     });
@@ -107,37 +122,12 @@ let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
 
     // Cleanup on unmount
     return () => map.remove();
-  }, []);
+  }, [mapMode]);
 
   // Update markers whenever filteredData changes
   useEffect(() => {
     if (!mapRef.current) return;
     const map = mapRef.current;
-
-        // Request user's location and set map center if granted
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLng = position.coords.longitude;
-          const userLat = position.coords.latitude;
-
-          // Center map on user's location
-          map.setCenter([userLng, userLat]);
-          map.setZoom(12);
-
-          // Add a marker at the user's location
-          new mapboxgl.Marker({ color: 'blue' })
-            .setLngLat([userLng, userLat])
-            .setPopup(new mapboxgl.Popup().setText("You are here"))
-            .addTo(map);
-        },
-        (error) => {
-          console.error("Location access denied or unavailable:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
 
     // Remove existing markers
     markersRef.current.forEach(marker => marker.remove());
@@ -269,8 +259,64 @@ let TIME_RANGE = timeWindow * 60 * 1000; // 15 minutes in milliseconds
         ref={mapContainerRef}
         style={{ width: '100%', height: '100%' }}
       />
+
+      <div style={styles.radios}>
+        <h2>Select Map Mode</h2>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="day"
+              checked={mapMode === "day"}
+              onChange={handleMapModeChange}
+            />
+            Day
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="night"
+              checked={mapMode === "night"}
+              onChange={handleMapModeChange}
+            />
+            Night
+          </label>
+        </div>
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="satellite"
+              checked={mapMode === "satellite"}
+              onChange={handleMapModeChange}
+            />
+            Satellite
+          </label>
+        </div>
+
+        <p>Current Map Mode: {mapMode}</p>
+      </div>
+
     </div>
   );
+};
+
+const styles = {
+  radios: {
+    position: 'absolute' as 'absolute',
+    top: '10px',
+    right: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)', // Slight transparency
+    padding: '15px',
+    borderRadius: '8px',
+    fontSize: '14px',
+    boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+    zIndex: 1000, // Ensure the filter controls are always on top
+    maxWidth: '300px',
+    width: '90%', // Responsive width
+  },
 };
 
 export default MapComponent;
