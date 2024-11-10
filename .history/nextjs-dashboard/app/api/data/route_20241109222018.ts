@@ -22,7 +22,6 @@ export async function GET() {
 
 
 
-
 export async function POST(request: NextRequest) {
   const client = await clientPromise;
   const db = client.db("mydatabase");

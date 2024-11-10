@@ -16,7 +16,7 @@ export async function GET() {
   const collection: Collection<MyDocument> = db.collection("sound_readings");
   const data = await collection.find({}).toArray();
   return NextResponse.json(data);
-}
+}\
 
 
 
