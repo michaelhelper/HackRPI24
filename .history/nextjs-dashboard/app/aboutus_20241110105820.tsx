@@ -15,7 +15,7 @@ const AboutUs: React.FC = () => {
     {
       title: 'What Makes Us Unique',
       content:
-        'Noise Scape leverages microphone arrays and Internet of Things connectivity technologies and real-time data collection to create comprehensive noise maps. Our use of spatial interpolation ensures continuous coverage, even in areas with sparse data points.',
+        'Noise Scape leverages microphone  technologies and real-time data collection to create comprehensive noise maps. Our use of spatial interpolation ensures continuous coverage, even in areas with sparse data points.',
     },
     {
       title: 'Importance of Monitoring Decibel Levels',
