@@ -361,14 +361,23 @@ if (navigator.geolocation) {
       el.style.height = '15px';
       el.style.borderRadius = '50%';
 
-      const estDate = new Date(new Date(item.timestamp).getTime() - (new Date(item.timestamp).getTimezoneOffset() + 300) * 60000 - 4.5*1000*60*60);
-      const estTimestamp = estDate.toLocaleString();
-
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
-        <strong>Sound Level:</strong> ${item.sound_level} dB<br/>
-        <strong>(Long,Lat):</strong> ${item.location.longitude},${item.location.latitude} <br/>
-        <strong>Timestamp (EST):</strong> ${estTimestamp}
-      `);
+items.forEach(item => {
+  const popup = new mapboxgl.Popup({ offset: 25 })
+    .setLngLat([item.location.longitude, item.location.latitude])
+    .setHTML(
+      <strong>Sound Level:</strong> ${item.sound_level} dB<br/>
+      <strong>(Long,Lat):</strong> ${item.location.longitude}, ${item.location.latitude} <br/>
+      <strong>Timestamp:</strong> ${new Date(item.timestamp).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      })}
+    )
+    .addTo(map);
+});
 
       const marker = new mapboxgl.Marker(el)
         .setLngLat([adjustedLng, adjustedLat])

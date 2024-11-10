@@ -361,7 +361,7 @@ if (navigator.geolocation) {
       el.style.height = '15px';
       el.style.borderRadius = '50%';
 
-      const estDate = new Date(new Date(item.timestamp).getTime() - (new Date(item.timestamp).getTimezoneOffset() + 300) * 60000 - 4.5*1000*60*60);
+      const estDate = new Date(new Date(item.timestamp).getTime() - (new Date(item.timestamp).getTimezoneOffset() + 300) * 60000 - );
       const estTimestamp = estDate.toLocaleString();
 
       const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
