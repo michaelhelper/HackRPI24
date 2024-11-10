@@ -4,6 +4,9 @@ import MapComponent from '@/app/map'; // Adjust the import path as necessary
 import { GET } from '@/app/api/data/route';
 import Navbar from './nav';
 import Legend from './map_controls/legend'; // Adjust the path as necessary
+import TimeSlider from './map_controls/timeslider'; // Adjust the path as necessary
+// import MapPage from './mappage';
+
 
 
 interface MyDocument {
@@ -28,6 +31,7 @@ export default async function Page() {
     <main>
       <MapComponent data={data} />
       <Legend />
+     
 
     </main>
     </div>
