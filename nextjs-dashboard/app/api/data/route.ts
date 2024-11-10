@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "../../lib/mongodb";
 import { Collection } from "mongodb";
 
+
+
 interface MyDocument {
   name: string;
   value: number;
@@ -15,6 +17,8 @@ export async function GET() {
   const data = await collection.find({}).toArray();
   return NextResponse.json(data);
 }
+
+
 
 
 
