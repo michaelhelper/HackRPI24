@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     const collection: Collection<SoundReading> = db.collection("sound_readings");
 
     // Fetch the total number of entries using the other API (totalqueries/route.ts)
-    const totalQueriesResponse = await fetch("http://localhost:3000/api/data/totalqueries");
+    const totalQueriesResponse = await GET();
     if (!totalQueriesResponse.ok) {
       throw new Error("Failed to fetch total queries");
     }
