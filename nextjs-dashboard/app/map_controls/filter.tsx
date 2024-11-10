@@ -2,24 +2,29 @@
 import React, { useState } from 'react';
 import CustomTimeSlider from './timeslider'; // Ensure the path is correct
 
-const permaMinSound:number = 0;
-const permaMaxSound:number = 1000;
+const permaMinSound: number = 0;
+const permaMaxSound: number = 1000;
 
 
 interface FilterControlsProps {
   minSoundLevel: number;
   maxSoundLevel: number;
+  windowSize: number;
   onFilterChange: (min: number, max: number) => void;
+  windowChange: (duration: number) => void;
   minTimestamp: number; // normalized min (0)
   maxTimestamp: number; // normalized max (duration)
   selectedTimestamp: number; // normalized value
   onTimeChange: (timestamp: number) => void;
+
 }
 
 const FilterControls: React.FC<FilterControlsProps> = ({
   minSoundLevel,
   maxSoundLevel,
+  windowSize,
   onFilterChange,
+  windowChange,
   minTimestamp,
   maxTimestamp,
   selectedTimestamp,
@@ -28,6 +33,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
   // Local state for managing the input fields
   const [localMinLevel, setLocalMinLevel] = useState<string | number>(minSoundLevel);
   const [localMaxLevel, setLocalMaxLevel] = useState<string | number>(maxSoundLevel);
+  const [localTimeWindow, setLocalTimeWindow] = useState<string | number>(windowSize);
 
   const handleApplyFilter = () => {
     // Parse the input as numbers before applying the filter
@@ -40,16 +46,24 @@ const FilterControls: React.FC<FilterControlsProps> = ({
       alert('Please enter valid numeric values for the sound levels.');
     }
   };
+  const handleApplyWindow = () => {
+    const window = typeof localTimeWindow === 'string' ? parseFloat(localTimeWindow) : localTimeWindow;
+    if (!isNaN(window)) {
+      console.log(`FilterControls: Applying time window: widnow=${window}`);
+      windowChange(window);
+    } else {
+      alert('Please enter valid numeric values for the time window.');
+    }
+  }
 
   const clearfilter = () => {
     // Reset local sound level inputs to default values
     setLocalMinLevel(permaMinSound);
     setLocalMaxLevel(permaMaxSound);
-    
+
     // Notify parent component to reset filters
     onFilterChange(minSoundLevel, maxSoundLevel);
-    onTimeChange(maxTimestamp);
-    
+
     console.log('FilterControls: Cleared all filters to default values.');
   };
 
@@ -107,6 +121,25 @@ const FilterControls: React.FC<FilterControlsProps> = ({
           onTimeChange(value);
         }}
       />
+
+      <div style={styles.inputGroup}>
+        <label>
+          Time Window:
+          <input
+            type="number"
+            value={localTimeWindow}
+            onChange={(e) => {
+              setLocalTimeWindow(e.target.value);
+            }}
+            style={styles.input}
+            placeholder="Window Size"
+          />
+          Minutes
+        </label>
+      </div>
+      <button onClick={handleApplyWindow} style={styles.button}>
+        Apply Window
+      </button>
     </div>
   );
 };
