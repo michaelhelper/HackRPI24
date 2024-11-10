@@ -11,11 +11,7 @@ const Logo: React.FC = () => {
 
 // Basic inline styles for the logo
 const styles = {  
-  logoImage: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
-  },
+  
 };
 
 export default Logo;
