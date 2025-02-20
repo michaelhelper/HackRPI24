@@ -1,4 +1,4 @@
-# HackRPI24
+# https://hack-rpi-24-2-michaelhelpers-projects.vercel.app
 
 ![Case study](https://github.com/user-attachments/assets/b62912a0-f356-4f62-b4dc-3615afad8353)
 ![Case study-2](https://github.com/user-attachments/assets/3798ed4b-2a98-49a6-92c5-fba7c6857d76)
